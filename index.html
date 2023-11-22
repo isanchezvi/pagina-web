@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Mi Página Web</title>
     <style>
       body {
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         height: 100vh;
+        background: #222;
       }
 
       p {
@@ -18,12 +20,43 @@
         color: white;
         padding: 1em 2em;
         border-radius: 0.5em;
-        box-shadow: 2px 4px 8px rgba(0,0,0,0.3);
+        box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      #clock {
+        font-size: 6em;
+        color: #d5d5d5;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
       }
     </style>
   </head>
 
   <body>
     <p>Mi página web publicada en GitHub</p>
+
+    <div id="clock"></div>
+
+    <script>
+      function clock() {
+        var date = new Date();
+        var hours = date.getHours();
+        var minutes = date.getMinutes();
+        var seconds = date.getSeconds();
+        var ampm = hours >= 12 ? "PM" : "AM";
+
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        minutes = minutes < 10 ? "0"+minutes : minutes;
+        seconds = seconds < 10 ? "0"+seconds : seconds;
+
+        var strTime = 
+          hours + ":" + minutes + ":" + seconds + " " + ampm;
+            
+        document.getElementById("clock").innerText = strTime;
+        setTimeout(clock, 1000);
+      }
+
+      clock();
+    </script>
   </body>
 </html>
